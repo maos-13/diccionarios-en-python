@@ -1,0 +1,46 @@
+import csv #importamos csv para leer,cargar y modificar archivos csv
+
+#aqui estamos creamos un diccinario 
+nombre={"manuel":{"edad":23,"estudiante":"yes,"},"carlos":{"edad":18,"estudiante":"claro"}}
+
+#en la FUNCION dici() vamos a imprimir el dicionario y a buscar una calve valor que se encuentra en el diccionario
+def dici():
+    
+    #estamos imprimiendo solo el contenido que tiene el diccionario en una de sus claves valor
+    print("estamos viendo contenido de un dicionario por su clave valor:\n",nombre["manuel"],"\n") 
+    
+    #con del eliminamos toda una clave valor y valor de un dicionario
+    del (nombre["manuel"])
+    
+    #qui se esta creando una buena clave valor en el diccionario 
+    nombre["nesly"]= {"edad":22,"estudiante":"yes"} 
+    
+    #imprime todo el dicionario
+    print ("estamos viendo el contenido de un dicionario:\n",nombre,"\n")
+    
+    #se creo una funcion para buscar claves valor y imprimir su contenido 
+    
+    def buscar():
+        #se le pide al usuario digitar el nombre que quiere buscar
+        print("buscar nombre en el dicionario:\n")
+        nombr = input()
+        #si el nombre es encontrado se imprimira el contedio de lo contrario mostrara que el nombre no esta registrado
+        if(nombr in nombre): print(nombre[nombr]) 
+        else:print("nombre no registrado")
+        
+    #activar funcion de buscar nombre en el dicionario
+    buscar()    
+
+#creamos una funcion para guardar nuestro dicionario en un archivo csv    
+def Escriencsv():
+    
+    #iniciamos nuestra funcion dici()
+    dici()
+    #guardamos nuestro dicionario 
+    with open('data1.csv', 'w') as f:
+        #importante que usemos la funcion (lineterminator='\n') para eliminar los saltos de linea al guardar
+        writer = csv.writer(f,lineterminator='\n')
+        for k, v in nombre.items():
+            writer.writerow([k, v])
+            
+ 
