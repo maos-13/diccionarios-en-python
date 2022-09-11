@@ -1,0 +1,55 @@
+    
+#importamos csv
+def impor_csv(nombre_archivo):
+    
+    separador=","
+    
+    with open(nombre_archivo, encoding="utf-8") as f:
+        next(f)
+        playbus=[]
+        for linea in f:
+            linea=linea.rstrip("\n")
+            columnas=linea.split(separador)
+            artista=columnas[0]
+            albun=columnas[1]
+            genero=columnas[2]
+            titulo=columnas[3]
+            duracion=float(columnas[4])
+            playbus.append({
+                "Artista":artista,
+                "Albun":albun,
+                "Genero":genero,
+                "Titulo":titulo,
+                "Duracion":duracion,  
+            })
+        return playbus
+            
+        
+def main():
+    
+    #iniciamos la funcion para importar nuestro diccionario 
+    playbus = impor_csv("data.csv")
+    
+    #modificamos un elemento del dicionario 
+    playbus[1]["Albun"]="elMASGRANDE"
+    
+    #recorremos el diccionario 
+    for playbu in playbus:
+        artista=playbu["Artista"]
+        Albun=playbu["Albun"]
+        Genero=playbu["Genero"]
+        Titulo=playbu["Titulo"]
+        Duracion=playbu["Duracion"]
+        
+        
+    #guardamos nuestro dicionaro en un archivo csv    
+    field_names=['Artista','Albun','Genero','Titulo','Duracion']
+    with open('data.csv', 'w') as file: 
+        
+        #importante que usemos la funcion (lineterminator='\n') para eliminar los saltos de linea al guardar
+        writer = csv.DictWriter(file, fieldnames = field_names, lineterminator='\n') 
+        writer.writerows(playbus)
+
+#iniciamos las funciones         
+main()        
+Escriencsv()
